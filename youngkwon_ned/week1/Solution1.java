@@ -1,4 +1,4 @@
-package youngkwon_ned;
+package youngkwon_ned.week1;
 
 /**
  * 문자열 압축
