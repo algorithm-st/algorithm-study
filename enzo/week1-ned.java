@@ -1,4 +1,5 @@
 mport java.util.*;
+import java.util.*;
 class Solution {
     public int solution(String s) {
         int answer = s.length();
@@ -12,11 +13,12 @@ class Solution {
         String beforeString = targetString.substring(0,splitCount);
         int count = 1;
         int index =splitCount;
+        String curString = "";
         for(index = splitCount;index<targetString.length();index+=splitCount){
 
-            if(index+splitCount>targetString.length()) break;
+            int end = index+splitCount > targetString.length() ? targetString.length() : index+splitCount;
 
-            String curString = targetString.substring(index,index+splitCount);
+            curString = targetString.substring(index,end);
             if(beforeString.equals(curString)){
                 count++;
             }
@@ -29,11 +31,8 @@ class Solution {
         }
 
         if(count>1) answer += String.valueOf(count).length();
-        answer += splitCount;
+        answer += curString.length();
 
-        if(index<targetString.length()){
-            answer += targetString.length() - index;
-        }
         return answer;
     }
 }
