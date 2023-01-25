@@ -17,9 +17,15 @@ public class Main {
                 return o1.length() - o2.length() != 0 ? o1.length() - o2.length() : o1.compareTo(o2);
             }
         });
+        long start = System.currentTimeMillis();
         for (int j = 0; j < i; j++) {
             words.add(br.readLine());
         }
+        long endTime = System.currentTimeMillis();
+        long l = endTime - start;
+        System.out.println("l = " + l);
+
+
         for (String word : words) {
             System.out.println(word);
         }
