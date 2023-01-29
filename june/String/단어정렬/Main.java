@@ -32,6 +32,9 @@ class Word implements Comparable<Word> {
 
     @Override
     public int compareTo(Word o) {
+        if (value.equals(o.value)) {
+            return 0;
+        }
         if (value.length() == o.getLength()) {
             return value.compareTo(o.value);
         } else {
