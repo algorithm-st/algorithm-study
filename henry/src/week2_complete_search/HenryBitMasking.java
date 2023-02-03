@@ -5,6 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+/**
+ *  각 칸 구분 - 1: 가로, 0: 세로
+ *
+ *  비트 마스킹
+ *  0000 0000 0000 0000
+ *  0000 0000 0000 0001
+ *  ...
+ *  1111 1111 1111 1110
+ *  1111 1111 1111 1111
+ *
+ */
 public class HenryBitMasking {
     private static int n = 0;
     private static int m = 0;
