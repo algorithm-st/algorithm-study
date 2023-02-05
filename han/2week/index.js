@@ -33,5 +33,3 @@ for (let i = 4; i < 11; i++) {
 for (let i = 0; i < testNum; i++) {
   console.log(testCase[inputs[i]]);
 }
-
-console.log(testCase);
