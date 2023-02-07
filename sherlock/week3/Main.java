@@ -4,7 +4,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Main {
-    public static int dx[] = {0, 1, 0, -1}; // 위 오른쪽 아래 왼쪽 (시계방향)
+    // 위 오른쪽 아래 왼쪽 (시계방향)
+    public static int dx[] = {0, 1, 0, -1};
     public static int dy[] = {-1, 0, 1, 0};
 
     public static void main(String[] args) {
@@ -27,8 +28,10 @@ public class Main {
     public static int bfs(int[][] graph, int x, int y) {
 
         Queue<Node> q = new LinkedList<>();
+        //처음시작
+        graph[x][y] = 1;
         q.offer(new Node(x, y));
-        graph[x][y] = 1; //처음시작
+        // 배열 범위
         int row = graph.length;
         int col = graph[0].length;
 
@@ -41,14 +44,11 @@ public class Main {
                 int next_x = x + dx[i];
                 int next_y = y + dy[i];
 
-                // 범위를 벗어났을 경우
                 if (next_x < 0 || next_x >= row || next_y < 0 || next_y >= col) continue;
-                // 벽을 만났을 경우
                 if (graph[next_x][next_y] == 0) continue;
-                // 가능한 경우
                 if (graph[next_x][next_y] == 1) {
                     graph[next_x][next_y] = graph[x][y] + 1;
-                    if (next_x == row - 1 && next_y == col - 1) return graph[row - 1][col - 1];
+                    if(next_x == row-1 && next_y == col-1) return graph[row-1][col-1];
                     q.offer(new Node(next_x, next_y));
                 }
             }
