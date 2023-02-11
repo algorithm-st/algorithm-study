@@ -7,6 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+
+/**
+ * 상근이네 집 -> 락페스티벌
+ * 상근이네 집 -> 편의점 ->.... -> 편의점-> 락페스티벌
+ *
+ *
+ * 집, 편의점부터 최대 갈 수 있는 거리 : 1000미터(50미터 x 맥주 20병)
+ */
 public class Henry {
 
     private static List<Point> storeList = new ArrayList<>();
@@ -50,7 +58,7 @@ public class Henry {
             return;
         }
 
-        // 목적지인가?
+        // 목적지에 도달할 수 있는가?
         if ((Math.abs(x - endPoint.x) + Math.abs(y - endPoint.y)) <= 1000) {
             isHappy = true;
             return;
@@ -67,6 +75,7 @@ public class Henry {
                 continue;
             }
 
+            // 방문 x + 도달 가능
             ch[i] = true;
             dfs(store.x, store.y);
         }
