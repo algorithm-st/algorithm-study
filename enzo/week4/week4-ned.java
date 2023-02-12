@@ -9,7 +9,7 @@ import java.util.*;
  * - start, end index 지정
  * - start index 시작으로 bfs
  * 걸린 시간 12
- * 시간복잡도 n*n
+ * 시간복잡도 n+e
  */
 public class Ned {
     public static final int STAND_NUM = 10;
