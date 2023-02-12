@@ -1,13 +1,13 @@
 package week4_bfs;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.*;
 
 public class Enzo {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+
         int n = Integer.valueOf(bufferedReader.readLine());
         List<Node> graph = new ArrayList<>();
         for (int i = 0; i <= n; i++) {
@@ -31,8 +31,11 @@ public class Enzo {
         bfs(n, answer, startNodeList);
 
         for (int i = 1; i <= n; i++) {
-            System.out.print(answer[i] + " ");
+            bufferedWriter.write(answer[i] + " ");
         }
+
+        bufferedWriter.flush();
+        bufferedWriter.close();
     }
 
     static boolean[] isCircular;
@@ -42,22 +45,17 @@ public class Enzo {
         flag = false;
 
         List<Integer> circularNodeNumberList = new ArrayList<>();
-        boolean[] isCircularTmp = new boolean[n + 1];
 
         for (int i = 1; i <= n; i++) {
             if (flag) {
                 break;
             }
+            boolean[] isVisit = new boolean[n + 1];
+            boolean[] isCircularTmp = new boolean[n + 1];
 
-            boolean[][] tempMap = new boolean[n + 1][n + 1];
-            for (Node node : graph) {
-                for (Node neighborNode : node.neighborNodeList) {
-                    tempMap[node.number][neighborNode.number] = true;
-                    tempMap[neighborNode.number][node.number] = true;
-                }
-            }
+            isVisit[i] = true;
             isCircularTmp[i] = true;
-            isCircularNodeNumberListWithDfs(tempMap, n, i, i, isCircularTmp);
+            isCircularNodeNumberListWithDfs(n, graph.get(i),-1,  i, isCircularTmp, isVisit);
         }
 
         for (int i = 1; i <= n; i++) {
@@ -69,31 +67,32 @@ public class Enzo {
         return circularNodeNumberList;
     }
 
-    static void isCircularNodeNumberListWithDfs(boolean[][] tempMap, int n, int currentNodeNumber, int startNodeNumber, boolean[] isCircularTmp) {
-        if (flag) {
-            return;
-        }
-        for (int j = 1; j <= n; j++) {
-            if (tempMap[currentNodeNumber][j]) {
-
-                if (j == startNodeNumber) {
-                    flag = true;
-                    for (int k = 1; k <= n; k++) {
-                        if (isCircularTmp[k]) {
-                            isCircular[k] = true;
-                        }
-                    }
-                    return;
-                }
-
-                tempMap[currentNodeNumber][j] = false;
-                tempMap[j][currentNodeNumber] = false;
-                isCircularTmp[j] = true;
-                isCircularNodeNumberListWithDfs(tempMap, n, j, startNodeNumber, isCircularTmp);
-                isCircularTmp[j] = false;
-                tempMap[currentNodeNumber][j] = true;
-                tempMap[j][currentNodeNumber] = true;
+    static void isCircularNodeNumberListWithDfs(int n, Node currentNode, int prevNodeNumber, int startNodeNumber, boolean[] isCircularTmp, boolean[] isVisit) {
+        for (Node neighbotNode : currentNode.neighborNodeList) {
+            if (flag) {
+                return;
             }
+
+            if (neighbotNode.number == prevNodeNumber) {
+                continue;
+            }
+            if (neighbotNode.number == startNodeNumber) {
+                flag = true;
+                for (int k = 1; k <= n; k++) {
+                    if (isCircularTmp[k]) {
+                        isCircular[k] = true;
+                    }
+                }
+                continue;
+            }
+            if (isVisit[neighbotNode.number]) {
+                continue;
+            }
+
+            isCircularTmp[neighbotNode.number] = true;
+            isVisit[neighbotNode.number] = true;
+            isCircularNodeNumberListWithDfs(n, neighbotNode, currentNode.number, startNodeNumber, isCircularTmp, isVisit);
+            isCircularTmp[neighbotNode.number] = false;
         }
     }
 
