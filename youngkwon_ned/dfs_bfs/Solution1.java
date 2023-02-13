@@ -1,4 +1,4 @@
-package youngkwon_ned.week3;
+package youngkwon_ned.dfs_bfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
