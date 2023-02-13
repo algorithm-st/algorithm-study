@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 
-public class 메모리초과 {
+public class 메모리초과2 {
     public static int[][] miro;
     public static int N;
     public static int M;

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 
-public class Main {
+public class Main2 {
 
     //4 6
 //101111
