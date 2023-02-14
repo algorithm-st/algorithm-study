@@ -22,12 +22,13 @@ public class 메모리초과2 {
             for (int j = 0; j < M; j++) {
                 int num = s1.charAt(j) - '0';
                 if (num == 1) {
-                    miro[i][j] = Integer.MAX_VALUE;
+                    miro[i][j] = Integer.MAX_VALUE/2;
                 } else {
                     miro[i][j] = 0;
                 }
             }
         }
+        miro[0][0] = 1;
         bfs(0, 0);
         System.out.println(miro[N - 1][M - 1]);
     }
@@ -50,7 +51,7 @@ public class 메모리초과2 {
                     continue;
                 }
 
-                if (miro[current[0]][current[1]] + 1 > miro[nx][ny]) {
+                if (miro[current[0]][current[1]] + 1 >= miro[nx][ny]) {
                     continue;
                 }
 
