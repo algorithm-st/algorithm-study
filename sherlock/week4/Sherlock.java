@@ -13,6 +13,9 @@ public class Sherlock {
     static int[][] graph;
     static int M, N;
 
+    // O(T) * O(K + 4MN)
+    // O(T) * O(MN)
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
