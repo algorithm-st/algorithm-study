@@ -39,7 +39,7 @@ public class 숫자야구 {
     static int expectNumber() {
         int answer = 0;
 
-        for(int i = 123; i < 988;i ++) {
+        for(int i = 123; i < 988; i ++) {
             if(!isSameNumber(i)) continue;
 
             int result = 0;
@@ -109,5 +109,9 @@ public class 숫자야구 {
             this.ball = ball;
         }
     }
+
+    /*
+    if (num.charAt(i) == num.charAt((i + 1) % 3) || num.charAt(i) == num.charAt((i + 2) % 3))
+     */
 }
 

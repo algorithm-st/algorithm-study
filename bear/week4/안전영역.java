@@ -41,7 +41,7 @@ public class 안전영역 {
             }
         }
 
-        int k = 0;
+        int k = 1;
         int max = Integer.MIN_VALUE;
 
 
@@ -56,6 +56,7 @@ public class 안전영역 {
                     }
                 }
             }
+
             cnt = 0;
             for(int i = 0; i < N; i++) {
                 for(int j = 0; j < N; j++) {
