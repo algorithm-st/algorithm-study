@@ -12,32 +12,28 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         StringTokenizer st;
-        int[][] stone = new int[N][2];
-        int[][] dp = new int[N][N];
-        Arrays.fill(dp[0], 5000);
-        Arrays.fill(dp[1], 5000);
+        int[][] stone = new int[24][2];
+        int[][] dp = new int[25][2];
 
-        for (int i = 0; i < N-1; i++) {
+        for (int i = 0; i < N - 1; i++) {
+            Arrays.fill(dp[i], 100000);
             st = new StringTokenizer(br.readLine());
-            stone[i][0] = Integer.parseInt(st.nextToken());
-            stone[i][1] = Integer.parseInt(st.nextToken());
+            stone[i + 1][0] = Integer.parseInt(st.nextToken());
+            stone[i + 1][1] = Integer.parseInt(st.nextToken());
         }
         int K = Integer.parseInt(br.readLine());
-
-        if (N > 1) {
-            dp[0][1] = Math.min(stone[1][0] + dp[0][0], stone[0][1]);
-            dp[1][1] = Math.min(stone[1][0] + dp[0][0], stone[0][1]);
-        }
-        if (N > 2) {
-            dp[0][2] = Math.min(stone[2][0] + dp[0][2], stone[1][1] + dp[0][1]);
-            dp[1][2] = Math.min(stone[2][0] + dp[1][2], stone[1][1] + dp[1][1]);
-            for (int i = 1; i < N-2; i++) {
-                dp[0][i + 2] = Math.min(stone[i + 1][0] + dp[0][i + 1], stone[i][1] + dp[0][i]);
-                dp[1][i + 2] = Math.min(Math.min(stone[i + 1][0] + dp[0][i + 1], stone[i][1] + dp[0][i]), dp[0][i - 1] + K);
+        dp[1][0] = 0;
+        dp[1][1] = 0;
+        dp[2][0] = stone[1][0];
+        dp[2][1] = stone[1][0];
+        for (int i = 3; i <= N; i++) {
+            dp[i][0] = Math.min(dp[i - 1][0] + stone[i - 1][0], dp[i - 2][0] + stone[i - 2][1]);
+            if (i > 3) {
+                dp[i][1] = Math.min(Math.min(dp[i - 1][1] + stone[i - 1][0], dp[i - 2][1] + stone[i - 2][1]), dp[i - 3][0] + K);
             }
         }
+        System.out.println(Math.min(dp[N][0], dp[N][1]));
 
-        System.out.println(Math.min(dp[0][N-2], dp[1][N-2]));
     }
 
 }
