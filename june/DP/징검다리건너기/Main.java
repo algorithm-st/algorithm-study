@@ -14,9 +14,10 @@ public class Main {
         StringTokenizer st;
         int[][] stone = new int[24][2];
         int[][] dp = new int[25][2];
-
-        for (int i = 0; i < N - 1; i++) {
+        for (int i = 0; i < 25; i++) {
             Arrays.fill(dp[i], 100000);
+        }
+        for (int i = 0; i < N - 1; i++) {
             st = new StringTokenizer(br.readLine());
             stone[i + 1][0] = Integer.parseInt(st.nextToken());
             stone[i + 1][1] = Integer.parseInt(st.nextToken());
@@ -25,7 +26,7 @@ public class Main {
         dp[1][0] = 0;
         dp[1][1] = 0;
         dp[2][0] = stone[1][0];
-        dp[2][1] = stone[1][0];
+        dp[2][1] = 100000;
         for (int i = 3; i <= N; i++) {
             dp[i][0] = Math.min(dp[i - 1][0] + stone[i - 1][0], dp[i - 2][0] + stone[i - 2][1]);
             if (i > 3) {
