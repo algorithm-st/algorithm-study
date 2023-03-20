@@ -27,7 +27,11 @@ public class Main2 {
         int mid=0;
         while (left <= right) {
             mid = (left + right) / 2;
-            if (count(mid, list) < M) {
+            System.out.println("left = " + left);
+            System.out.println("mid = " + mid);
+            System.out.println("right = " + right);
+            System.out.println("count(mid, list) = " + count(mid, list));
+            if (count(mid, list) <= M) {
                 // 주어진 M보다 작으면 간격을 더 좁혀야함
                 right = mid - 1;
             } else {
@@ -44,6 +48,6 @@ public class Main2 {
             Integer next = list.get(i + 1);
             count += (next - start - 1) / mid;
         }
-        return count - 1;
+        return count;
     }
 }
