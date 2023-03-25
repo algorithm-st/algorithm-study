@@ -63,6 +63,7 @@ public class 최단거리 {
     }
 
     static void dijk(int start) {
+
         PriorityQueue<Node> queue = new PriorityQueue<>();
         boolean[] check = new boolean[v + 1];
         queue.add(new Node(start, 0));
