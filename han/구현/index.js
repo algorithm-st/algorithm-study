@@ -11,7 +11,6 @@ for (let i = 0; i < input.length; i++) {
   let result = text.indexOf(backSide); // 요소가 있으면 1 반환 없으면 -1 반환
 
   while (result !== -1) {
-    //
     // 배가 나왔을 경우
     count++;
     result = text.indexOf(backSide, result + 1); // 다음 요소 서치
