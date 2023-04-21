@@ -26,8 +26,9 @@ public class Solution {
         colSize = relation[0].length;
         database = relation;
         candidateSets = new ArrayList<>();
-
+        // 0000 0001 0010 0011
         // 모든 경우의 수 2^N (1을 << colSize 만큼 시프트)
+        // 8개 이하 -> 1,2,3,4,5,6,7,8 -> 2^n-1
         for (int i = 0; i < (1 << colSize); i++) {
             if (!isUnique(i)) {
                 continue;
