@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Ned {
+public class June {
     public int solution(int N, int[][] road, int K) {
         int [][] edges = new int[N+1][N+1];
         for(int i=0;i<=N;i++){
