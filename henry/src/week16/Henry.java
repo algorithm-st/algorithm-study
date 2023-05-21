@@ -2,12 +2,30 @@ package week16;
 
 import java.util.*;
 
+/**
+ 왜 이 문제를 선택했나?
+ - 레벨 2 문제 중 풀어보지 못한 유형을 고르기 위해 선택
+
+ 문제 푼데 걸린 시간은?
+ - 1시간 30분
+
+ 시간 복잡도는?
+ - n * m * 4 (n,m : 격자의 크기, 4 : 4가지 방향 의미)
+
+ 문제 설명
+ - 각 칸마다 S, L, R가 써져있는 격자가 있다.격자에서 빛을 쏜다.
+ - 각 격자는 특이한 성질이 있다.  S - 직진, L - 좌회전, R - 우회전
+ - 빛이 격자의 끝을 넘어갈 경우, 반대쪽 끝으로 다시 돌아온다.
+ - 빛의 경로 사이클의 모든 길이들을 배열에 담아 오름차순으로 정렬해 return 해주세요.
+
+ 문제 풀이 설명
+ - 빛이 격자 바깥으로 나가는 경우는 없기 때문에 한번 들어간 빛은 무조건 사이클이 존재한다.
+ - 모든 점에 대해 4가지 방향 테스트하며 사이클을 찾아나간다. (상하좌우)
+    - 이때 사이클을 형성하는 좌표+방향은 체크한다.
+- 이미 빛이 지나간 좌표, 방향이면 이미 사이클을 형성하는 좌표+방향이므로 테스트에서 제외한다.
+
+ */
 public class Henry {
-    /**
-     문제 풀이
-     1. 모든 점에 대해 4방향 테스트
-     2. 각점에 대해 방향 체크를 하며, 이전에 사이클이 지나간 방향이면 제외
-     */
     static class Solution {
         static String[][] map;
         static boolean[][][] ch;
@@ -37,8 +55,8 @@ public class Henry {
                 this.dir = dir;
             }
 
-            void move(int n, String[][] map) {
-                if (map[r][c].equals("R")) {
+            void move(int n, String[][] map) { // 빛의 이동 표현
+                if (map[r][c].equals("R")) {// 방향 전환
                     dir = right[dir];
                 } else if (map[r][c].equals("L")) {
                     dir = left[dir];
@@ -46,7 +64,7 @@ public class Henry {
 
                 r = r + dr[dir];
                 c = c + dc[dir];
-                if (r == n) {
+                if (r == n) { // 격자 바깥을 나가는 경우
                     r = 0;
                 } else if (r == -1) {
                     r = n - 1;
@@ -63,7 +81,7 @@ public class Henry {
             n = grid.length;
             m = grid[0].length();
 
-            // 배열 초기화
+            // 격자 초기화
             map = new String[n][m];
             ch = new boolean[n][m][4];
             for (int i = 0; i < n; i++) {
@@ -76,7 +94,7 @@ public class Henry {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
                     for (int k = 0; k < 4; k++) { // 방향
-                        if (ch[i][j][k]) { // 이미 사이클이 존재
+                        if (ch[i][j][k]) { // 해당 좌표 + 방향에 이미 사이클이 존재하면 넘어간다.
                             continue;
                         }
 
