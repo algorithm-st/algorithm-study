@@ -70,7 +70,7 @@ public class Main {
         Arrays.fill(dis, 200000000);
 
         q.add(new Node(start, 0));
-        dis[start] = 0; // 놓친 부분
+        dis[start] = 0; // 놓친 부분 -> 시작 초기화
 
         while (!q.isEmpty()) {
             Node now = q.poll();
@@ -79,7 +79,7 @@ public class Main {
                 for (Node next : list[now.v]) {
                     if (dis[next.v] > dis[now.v] + next.value) {
                         dis[next.v] = dis[now.v] + next.value;
-                        q.add(new Node(next.v, dis[next.v]));
+                        q.add(new Node(next.v, dis[next.v])); // dis[next.v] 이해가 안됨 -> pq 이기 때문에 이걸 해줘야 우선순위 결정됨...
                     }
                 }
             }
