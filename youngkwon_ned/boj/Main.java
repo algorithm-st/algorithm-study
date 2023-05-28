@@ -64,6 +64,7 @@ public class Main {
 
     // 다익스트라 알고리즘
     public static int dijkstra(int start, int end) {
+        // start -> end 까지 최단거리 저장하는 dist 초기화
         Arrays.fill(dist, INF);
 
         PriorityQueue<Node> pq = new PriorityQueue<>();
@@ -73,15 +74,17 @@ public class Main {
 
         while (!pq.isEmpty()) {
             Node curNode = pq.poll();
-            int cur = curNode.end;
+            int currentEnd = curNode.end;
 
-            if (!check[cur]) {
-                check[cur] = true;
+            if (!check[currentEnd]) {
+                check[currentEnd] = true;
 
-                for (Node node : map.get(cur)) {
-                    if (!check[node.end] && dist[node.end] > dist[cur] + node.weight) {
-                        dist[node.end] = dist[cur] + node.weight;
-                        pq.add(new Node(node.end, dist[node.end]));
+                for (Node nextNode : map.get(currentEnd)) {
+                    // start -> nextNode end 까지 최단거리와 start -> 현재 노드 최단거리 + 다음노드 가중치 비교 후 현재 노드 값 + 다음 노드 가중치가 더 적을 경우 최신화
+                    // start -> end 최단거리 계산 할 때 다음 노드를 거치느냐 안거치느냐 확인하는 로직
+                    if (!check[nextNode.end] && dist[nextNode.end] > dist[currentEnd] + nextNode.weight) {
+                        dist[nextNode.end] = dist[currentEnd] + nextNode.weight;
+                        pq.add(new Node(nextNode.end, dist[nextNode.end]));
                     }
                 }
             }
