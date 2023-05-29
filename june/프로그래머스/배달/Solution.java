@@ -23,21 +23,11 @@ class Solution {
         queue.add(new Node(1, 0));
         visited[1] = true;
         dis[1] = 0;
-        int count = 0;
         while(!queue.isEmpty()){
             Node now = queue.poll();
-            // visited[now.index] = true;
-            if (now.val > dis[now.index]) {
-                continue;
-            }
-            count++;
-            if(count>=N){
-                break;
-            }
-            System.out.println("zz" + now.index);
-
+            visited[now.index] = true;
             for(Node next : graph[now.index]){
-                // if(visited[next.index]) continue;
+                if(visited[next.index]) continue;
                 
                 if(dis[next.index] > now.val + next.val){
                     dis[next.index] = now.val + next.val;
