@@ -35,9 +35,9 @@ public class Main {
         for (int i = 0; i < e; i++) {
             String info = br.readLine();
             st = new StringTokenizer(info);
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
-            int c = Integer.parseInt(st.nextToken());
+            int a = Integer.parseInt(st.nextToken()); // a 위치
+            int b = Integer.parseInt(st.nextToken()); // b 위치
+            int c = Integer.parseInt(st.nextToken()); // 가중치
             map.get(a).add(new Node(b, c));
             map.get(b).add(new Node(a, c));
         }
