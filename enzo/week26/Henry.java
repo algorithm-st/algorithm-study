@@ -10,6 +10,7 @@ class Solution {
         for(int i : B){
             pqB.add(i);
         }
+
         int answer = 0;
         while(!pqA.isEmpty() && !pqB.isEmpty()){
             int a = pqA.poll();
